@@ -1,4 +1,26 @@
 const myLibrary = [];
+const addBookButton = document.querySelector('button.add-book');
+addBookButton.addEventListener('click', () => {
+    const dialog = document.querySelector('dialog');
+    dialog.showModal();
+})
+
+const submitNewBookButton = document.querySelector('button.submit-new-book');
+submitNewBookButton.addEventListener('click', () => {
+    const inputTitle = document.querySelector('input#input-title');
+    const title = inputTitle.value;
+
+    const inputAuthor = document.querySelector('input#input-author');
+    const author = inputAuthor.value;
+
+    const inputPages = document.querySelector('input#input-pages');
+    const pages = +inputPages.value;
+
+    const isReadCheckBox = document.querySelector('input#is-read');
+    const isRead = isReadCheckBox.checked;
+
+    addBookToLibrary(new Book(title, author, pages, isRead));
+})
 
 function Book(title, author, pages, read) {
     this.title = title;

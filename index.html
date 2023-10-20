@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,27 @@
     <link rel="stylesheet" href="./style.css">
     <script src="./logic.js" defer></script>
 </head>
+
 <body>
+    <div class="add-book-container">
+        <button class="add-book">Add Book</button>
+    </div>
     <div class="book-container"></div>
+    <dialog>
+        <form method="dialog">
+            <div class="form-grid">
+                <p>Please enter a new book</p>
+                <input id="input-title" type="text" placeholder="Title" required>
+                <input id="input-author" type="text" placeholder="Author" required>
+                <input id="input-pages" type="number" placeholder="Pages" required>
+                <div class="is-read"> 
+                    <label for="is-read">Have you read it?</label>
+                    <input type="checkbox" id="is-read">
+                </div>
+                <button class="submit-new-book">Submit</button>
+            </div>
+        </form>
+    </dialog>
 </body>
+
 </html>
