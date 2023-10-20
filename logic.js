@@ -10,52 +10,51 @@ function Book(title, author, pages, read) {
     }
 }
 
-myLibrary.push(new Book('Test', 'testone', 32, false))
-myLibrary.push(new Book('The Book', 'rolken', 45, true))
-myLibrary.push(new Book('Big Old Test', 'testone', 32, false))
-myLibrary.push(new Book('The Book Two', 'rolken', 45, true))
-myLibrary.push(new Book('Harry Potter', 'rolken', 45, true))
-
-function displayBooks() {
+function addBookToLibrary(book) {
     const bookContainer = document.querySelector('div.book-container');
-    for(let i = 0; i < myLibrary.length; i++) {
-        const newBook = document.createElement("div");
-        newBook.classList.add('book-card');
+    const newBook = document.createElement("div");
+    newBook.classList.add('book-card');
 
-        const title = document.createElement("p");
-        title.innerText = myLibrary[i].title;
-        newBook.appendChild(title);
+    newBook.style.backgroundColor = book.read ? 'green' : 'red'
 
-        const author = document.createElement("p");
-        author.innerText = myLibrary[i].author;
-        newBook.appendChild(author);
+    const title = document.createElement("p");
+    title.innerText = book.title;
+    newBook.appendChild(title);
 
-        const pages = document.createElement("p");
-        pages.innerText = myLibrary[i].pages + " pages";
-        newBook.appendChild(pages);
+    const author = document.createElement("p");
+    author.innerText = book.author;
+    newBook.appendChild(author);
 
-        const buttonContainer = document.createElement("div");
-        buttonContainer.classList.add('button-container');
-        newBook.appendChild(buttonContainer);
+    const pages = document.createElement("p");
+    pages.innerText = book.pages + " pages";
+    newBook.appendChild(pages);
 
-        const readButton = document.createElement("button");
-        readButton.classList.add('read-button');
-        readButton.innerText = "Read";
-        buttonContainer.appendChild(readButton);
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add('button-container');
+    newBook.appendChild(buttonContainer);
 
-        const removeButton = document.createElement("button");
-        removeButton.classList.add('remove-button');
-        removeButton.innerText = "Remove";
-        buttonContainer.appendChild(removeButton);
+    const readButton = document.createElement("button");
+    readButton.classList.add('read-button');
+    readButton.innerText = "Read";
+    readButton.addEventListener(('click'), () => {
+        if(newBook.style.backgroundColor == 'red')
+            newBook.style.backgroundColor = 'green'
+        else
+            newBook.style.backgroundColor = 'red'
+    })
+    buttonContainer.appendChild(readButton);
 
-        newBook.appendChild(buttonContainer);
+    const removeButton = document.createElement("button");
+    removeButton.classList.add('remove-button');
+    removeButton.innerText = "Remove";
+    removeButton.addEventListener(('click'), () => {
+        newBook.remove();
+    })
+    buttonContainer.appendChild(removeButton);
 
-        bookContainer.appendChild(newBook);
-    }
+    newBook.appendChild(buttonContainer);
+
+    bookContainer.appendChild(newBook);
 }
 
-function addBookToLibrary() {
-    
-}
-
-displayBooks();
+addBookToLibrary(new Book('test', 'test', 56, false))
