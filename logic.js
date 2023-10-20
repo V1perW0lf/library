@@ -3,7 +3,7 @@ const addBookButton = document.querySelector('button.add-book');
 addBookButton.addEventListener('click', () => {
     const dialog = document.querySelector('dialog');
     dialog.showModal();
-})
+});
 
 const submitNewBookButton = document.querySelector('button.submit-new-book');
 submitNewBookButton.addEventListener('click', () => {
@@ -20,7 +20,7 @@ submitNewBookButton.addEventListener('click', () => {
     const isRead = isReadCheckBox.checked;
 
     addBookToLibrary(new Book(title, author, pages, isRead));
-})
+});
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -28,16 +28,16 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.info = function() {
-        return `${title} by ${author}, ${pages} pages, ${read}`
+        return `${title} by ${author}, ${pages} pages, ${read}`;
     }
-}
+};
 
 function addBookToLibrary(book) {
     const bookContainer = document.querySelector('div.book-container');
     const newBook = document.createElement("div");
     newBook.classList.add('book-card');
 
-    newBook.style.backgroundColor = book.read ? 'green' : 'red'
+    newBook.style.backgroundColor = book.read ? 'green' : 'red';
 
     const title = document.createElement("p");
     title.innerText = book.title;
@@ -59,10 +59,8 @@ function addBookToLibrary(book) {
     readButton.classList.add('read-button');
     readButton.innerText = "Read";
     readButton.addEventListener(('click'), () => {
-        if(newBook.style.backgroundColor == 'red')
-            newBook.style.backgroundColor = 'green'
-        else
-            newBook.style.backgroundColor = 'red'
+        book.read = !book.read;
+        newBook.style.backgroundColor = book.read ? 'green' : 'red'
     })
     buttonContainer.appendChild(readButton);
 
@@ -77,6 +75,6 @@ function addBookToLibrary(book) {
     newBook.appendChild(buttonContainer);
 
     bookContainer.appendChild(newBook);
-}
+};
 
-addBookToLibrary(new Book('test', 'test', 56, false))
+addBookToLibrary(new Book('test', 'test', 56, false));
